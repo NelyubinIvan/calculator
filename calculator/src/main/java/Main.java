@@ -27,10 +27,6 @@ public class Main {
             throw new Exception();
 
         }
-        if(!(str[1].equals("+") || str[1].equals("-") || str[1].equals("/") || str[1].equals("*"))) {
-            throw new Exception();
-
-        }
 
     }
 
