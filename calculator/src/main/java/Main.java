@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,15 +15,18 @@ public class Main {
 
     public static void checkingForExceptions(String input) throws Exception {
         String[] str = input.split(" ");
+        if (str.length < 3) {
+            throw new Exception("throws Exception");
+        }
+        int number1 = Integer.parseInt(str[0]);
+        int number2 = Integer.parseInt(str[2]);
         Pattern pattern = Pattern.compile("^(\\d+)\\s*([+\\-*/])\\s*(\\d+)$");
         Matcher matcher = pattern.matcher(input);
-
-       if (!matcher.matches()) {
-            throw new Exception();
-       }
-
-        if(Integer.parseInt(str[0]) > 10 || Integer.parseInt(str[2]) > 10 || Integer.parseInt(str[0]) < 1 || Integer.parseInt(str[2]) < 1) {
-            throw new Exception();
+        if (!matcher.matches()) {
+            throw new Exception("throws Exception");
+        }
+        if (number1 > 10 || number2 > 10 || number1 < 1 || number2 < 1) {
+            throw new Exception("throws Exception");
 
         }
 
@@ -33,29 +35,30 @@ public class Main {
 
     public static String calc(String input) throws Exception {
         String[] str = input.split(" ");
-
-        switch (str[1]) {
+        int number1 = Integer.parseInt(str[0]);
+        int number2 = Integer.parseInt(str[2]);
+        String operator = str[1];
+        switch (operator) {
             case "+" -> {
-                return String.valueOf(Integer.parseInt(str[0]) + Integer.parseInt(str[2]));
+                return String.valueOf(number1 + number2);
             }
             case "-" -> {
-                return String.valueOf(Integer.parseInt(str[0]) - Integer.parseInt(str[2]));
+                return String.valueOf(number1 - number2);
             }
             case "*" -> {
-                return String.valueOf(Integer.parseInt(str[0]) * Integer.parseInt(str[2]));
+                return String.valueOf(number1 * number2);
             }
             case "/" -> {
                 if (Integer.parseInt(str[2]) == 0) {
-                   throw new Exception("Division by zero");
-               }
-                return String.valueOf(Integer.parseInt(str[0]) / Integer.parseInt(str[2]));
+                    throw new Exception("throws Exception");
+                }
+                return String.valueOf(number1 / number2);
             }
-            default -> throw new Exception("Invalid operator");
+            default -> throw new Exception();
 
         }
 
     }
 }
-
 
 
